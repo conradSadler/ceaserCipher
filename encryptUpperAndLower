@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+/**
+ * Name: Conrad Sadler
+ * Date: 10/05/2024
+ * Project: This project is is intended to give me some continuing education with the modulo operator
+ */
+
+/**
+ * Description: Encrypt the letter using the shift value.
+ * Error handeling: If the unencrypted letter is not lowercase, then the unencrypted
+ * letter is returned.
+ * @param letter The letter to be encrypted
+ * @param shiftValue The number by which the letter will be shifted up or down the alphabet
+ * @Return: char that is encrypted if a valid argument was given. Otherwise the argument is returned 
+ */
+char encryptLower(char letter, int shiftValue);
+
+int main ()
+{
+  char userInput;
+  int shiftValue;
+
+  cout << "Enter the lowercase character to encrypt:"<< endl;
+  cin >> userInput;
+  if(cin.fail())  //if the user trys to break program, output "Invalid user input"
+  {
+        cout << "Invalid user input."<< endl;
+        return 0;
+  }
+  cout << "Enter the encryption value:" << endl;
+  cin >> shiftValue;
+
+  if(cin.fail())  //if the user trys to break program, output "Invalid user input"
+  {
+        cout << "Invalid user input."<< endl;
+        return 0;
+  }
+  cout << "Letter "<< userInput <<" was encrypted to " << encryptLower(userInput, shiftValue) << endl;
+  return 0;
+}
+
+char encryptLower(char letter, int shiftValue)
+{
+  if ((letter >= 'A' && letter <= 'Z') || (letter >= 'a' && letter <= 'z'))
+  {
+        if (int(letter) != int(tolower(letter)))
+        {
+            return ((((letter - 'A' + shiftValue)%26) +26) % 26 ) +'A';
+        }
+        else
+        {
+            return ((((letter - 'a' + shiftValue)%26) +26) % 26 ) +'a';
+        }     
+  }
+  else
+  {
+        return letter;
+  }
+}
